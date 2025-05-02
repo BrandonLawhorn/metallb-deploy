@@ -2,7 +2,7 @@ pipeline {
     agent any 
 
     environment {
-        GITHUB_URL = 'https://github.com/miamioh-cit/metallb-deploy.git'  // <---- Change this to match your cloned repository
+        GITHUB_URL = 'https://github.com/BrandonLawhorn/metallb-deploy.git'  // <---- Change this to match your cloned repository
         KUBECONFIG = credentials('cit-department')   // <---- Change this to match your kubernetes cluster credentials
     }
 
@@ -12,7 +12,7 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']],
                           userRemoteConfigs: [[url: "${GITHUB_URL}"]]])
             }
-        }
+         
         stage('Deploy to Kubernetes Cluster') {
             steps {
                 script {
